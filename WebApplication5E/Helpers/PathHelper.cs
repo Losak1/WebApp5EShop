@@ -18,6 +18,11 @@ namespace WebApplication5E.Helpers
             return $"{_uploadspath}{_imgprodottopath}/{prodotto.Id}/{prodotto.Immagine}";
         }
 
+        public static string GetProdottoUrl(int id)
+        {
+            return $"/home/detail/{id}";
+        }
+
         public static void InitPaths()
         {
             _uploadspath = ConfigurationManager.AppSettings["uploadspath"];

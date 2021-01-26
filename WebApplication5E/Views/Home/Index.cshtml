@@ -8,6 +8,6 @@
 
 @foreach(var p in Model.Prodotti)
 {
-    <div style="background-color:lightgray"><a href="/home/detail/@p.Id">Dettaglio</a> <strong>@p.Nome</strong> <em>@p.Descrizione</em> <img src="@p.Immagine"/> € @p.Prezzo @p.Quantita pezzi</div>
+    <div style="background-color:lightgray"><a href="@WebApplication5E.Helpers.PathHelper.GetProdottoUrl(p.Id)">Dettaglio</a> <strong>@p.Nome</strong> <em>@p.Descrizione</em> <img src="@WebApplication5E.Helpers.PathHelper.GetProdottoImagePath(p)" width="20"/> € @p.Prezzo @p.Quantita pezzi</div>
     <br />
 }

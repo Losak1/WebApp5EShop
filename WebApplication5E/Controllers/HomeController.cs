@@ -15,10 +15,10 @@ namespace WebApplication5E.Controllers
         public ActionResult Index()
         {
             List<Prodotto> prodotti = DatabaseHelper.GetAllProdotti();
-            foreach (var p in prodotti)
-            {
-                p.Immagine = PathHelper.GetProdottoImagePath(p);
-            }
+            //foreach (var p in prodotti)
+            //{
+            //    p.Immagine = PathHelper.GetProdottoImagePath(p);
+            //}
             var model = new IndexViewModel()
             {
                 Prodotti = prodotti
@@ -29,7 +29,7 @@ namespace WebApplication5E.Controllers
         public ActionResult Detail(int id)
         {
             var prodotto = DatabaseHelper.GetProdottoById(id);
-            prodotto.Immagine = PathHelper.GetProdottoImagePath(prodotto);
+            //prodotto.Immagine = PathHelper.GetProdottoImagePath(prodotto);
             var model = new DetailViewModel()
             {
                 Prodotto = prodotto
