@@ -1,0 +1,13 @@
+﻿@model WebApplication5E.Models.View.IndexViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBasePage.cshtml";
+}
+
+<h2>Index</h2>
+
+@foreach(var p in Model.Prodotti)
+{
+    <div style="background-color:lightgray"><a href="/home/detail/@p.Id">Dettaglio</a> <strong>@p.Nome</strong> <em>@p.Descrizione</em> <img src="@p.Immagine"/> € @p.Prezzo @p.Quantita pezzi</div>
+    <br />
+}
