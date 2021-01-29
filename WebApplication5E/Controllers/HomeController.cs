@@ -12,6 +12,7 @@ namespace WebApplication5E.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        [HttpGet]
         public ActionResult Index()
         {
             List<Prodotto> prodotti = DatabaseHelper.GetAllProdotti();
@@ -26,6 +27,7 @@ namespace WebApplication5E.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult Detail(int id)
         {
             var prodotto = DatabaseHelper.GetProdottoById(id);

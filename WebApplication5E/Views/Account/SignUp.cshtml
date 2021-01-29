@@ -1,0 +1,15 @@
+﻿@model WebApplication5E.Models.View.SignUpViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutBasePage.cshtml";
+}
+
+<h2>@Model.Titolo</h2>
+
+@using (Html.BeginForm("SignUp","Account",FormMethod.Post))
+{
+    <label>Email</label>@Html.TextBoxFor( t=>t.Email, new { @class = "mia", placeholder ="email", type="email" })
+
+}
+
+
