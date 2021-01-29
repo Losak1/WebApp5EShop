@@ -338,8 +338,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-WebApplication5E/obj/Debug/WebApplication5E.dll
-WebApplication5E/obj/Debug/WebApplication5E.pdb
 *.cache
 WebApplication5E/obj/Debug/WebApplication5E.csproj.FileListAbsolute.txt
 *.dll
