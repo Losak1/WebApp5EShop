@@ -14,15 +14,25 @@ namespace WebApplication5E.Controllers
         public ActionResult SignUp()
         {
             var model = new SignUpViewModel();
-            ViewBag.Title = model.Titolo = "Registrazione";
+            SetSignUpViewModelLabels(model);
             return View(model);
+        }
+
+        private void SetSignUpViewModelLabels(SignUpViewModel model)
+        {
+            ViewBag.Title = model.LabelTitolo = "Registrazione";
+            model.LabelConfermaPassword = "Conferma password";
+            model.LabelEmail = "Indirizzo mail";
+            model.LabelNome = "Nickname";
+            model.LabelPassword = "Password";
+            model.BtnRegistrazione = "Registrati";
         }
 
         [HttpPost]
         public ActionResult SignUp(SignUpViewModel model)
         {
 
-
+            SetSignUpViewModelLabels(model);
             return View(model);
         }
     }

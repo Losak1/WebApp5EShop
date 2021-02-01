@@ -4,12 +4,26 @@
     Layout = "~/Views/Shared/_LayoutBasePage.cshtml";
 }
 
-<h2>@Model.Titolo</h2>
+<h2>@Model.LabelTitolo</h2>
 
-@using (Html.BeginForm("SignUp","Account",FormMethod.Post))
+@using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
 {
-    <label>Email</label>@Html.TextBoxFor( t=>t.Email, new { @class = "mia", placeholder ="email", type="email" })
+    @Html.AntiForgeryToken()
+
+    <label>@Model.LabelEmail</label>
+    @Html.TextBoxFor(t => t.Email, new { @class = "mia", placeholder = Model.LabelEmail, type = "email" })
+    <br />
+    <label>@Model.LabelPassword</label>
+    @Html.PasswordFor(t => t.Password, new { placeholder = Model.LabelPassword })
+    <br />
+    <label>@Model.LabelConfermaPassword</label>
+    @Html.PasswordFor(t => t.ConfermaPassword, new { placeholder = Model.LabelConfermaPassword })
+    <br />
+    <label>@Model.LabelNome</label>
+    @Html.TextBoxFor(t => t.Nome, new { placeholder = Model.LabelNome })
+    <br />
+    <input type="submit" value="@Model.BtnRegistrazione" />
+
+
 
 }
-
-

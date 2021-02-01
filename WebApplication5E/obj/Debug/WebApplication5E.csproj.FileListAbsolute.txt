@@ -102,3 +102,5 @@ C:\Users\finix\source\repos\WebApplication5E\WebApplication5E\obj\Debug\WebAppli
 C:\Users\finix\source\repos\WebApplication5E\WebApplication5E\obj\Debug\WebApplication5E.dll
 C:\Users\finix\source\repos\WebApplication5E\WebApplication5E\obj\Debug\WebApplication5E.pdb
 C:\Users\finix\source\repos\WebApplication5E\WebApplication5E\obj\Debug\WebApplication5E.csprojAssemblyReference.cache
+C:\Users\finix\source\repos\WebApplication5E\WebApplication5E\obj\Debug\WebApplication5E.Resource1.resources
+C:\Users\finix\source\repos\WebApplication5E\WebApplication5E\obj\Debug\WebApplication5E.csproj.GenerateResource.cache
