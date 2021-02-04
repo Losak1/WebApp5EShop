@@ -24,6 +24,7 @@ namespace WebApplication5E.Helpers
             using (var connection = new MySqlConnection(_connectionString))
             {
                 var sql = "SELECT * FROM prodotto";
+                
                 prodotti = connection.Query<Prodotto>(sql).ToList();
             }
 

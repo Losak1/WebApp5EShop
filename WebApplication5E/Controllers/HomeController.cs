@@ -15,7 +15,7 @@ namespace WebApplication5E.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<Prodotto> prodotti = DatabaseHelper.GetAllProdotti();
+            List<Prodotto> prodotti = new List<Prodotto>();// DatabaseHelper.GetAllProdotti();
             //foreach (var p in prodotti)
             //{
             //    p.Immagine = PathHelper.GetProdottoImagePath(p);
