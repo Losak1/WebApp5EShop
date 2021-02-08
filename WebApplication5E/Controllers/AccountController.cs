@@ -26,13 +26,32 @@ namespace WebApplication5E.Controllers
             model.LabelNome = "Nickname";
             model.LabelPassword = "Password";
             model.BtnRegistrazione = "Registrati";
+            model.LabelPrivacy = "Accetta la <a href=\"\"> privacy</a>";
         }
 
         [HttpPost]
         public ActionResult SignUp(SignUpViewModel model)
         {
-
+            model.Utente.Password = model.Password;
             SetSignUpViewModelLabels(model);
+            if (ModelState.IsValid)
+            {
+                if (!model.Utente.IsPrivacy)
+                {
+                    model.Messaggio = "E' necessario accettare la privacy";
+                    model.IsOk = false;
+                    return View(model);
+                }
+                //TODO controllare su db che non esista una riga con questa mail
+                //TODO salvare su db e altri controlli su proprietà che non hanno data annotation
+            }
+            else
+            {
+                model.Messaggio = "Completa correttamente tutti i campi";
+                model.IsOk = false;
+            }
+
+     
             return View(model);
         }
     }

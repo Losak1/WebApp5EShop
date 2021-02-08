@@ -149,6 +149,7 @@
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Models\Entity\BaseEntity.cs" />
+    <Compile Include="Models\Entity\Utente.cs" />
     <Compile Include="Models\Entity\Prodotto.cs" />
     <Compile Include="Models\View\DetailViewModel.cs" />
     <Compile Include="Models\View\IndexViewModel.cs" />

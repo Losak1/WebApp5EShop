@@ -17,7 +17,7 @@ namespace WebApplication5E.Helpers
         {
             _connectionString = ConfigurationManager.ConnectionStrings["DbShop"].ConnectionString;
         }
-
+        #region prodotto
         public static List<Prodotto> GetAllProdotti()
         {
             var prodotti = new List<Prodotto>();
@@ -41,5 +41,20 @@ namespace WebApplication5E.Helpers
             }
             return prodotto;
         }
+        #endregion
+
+        #region utente
+        public static bool ExistsUtenteByEmail(string email)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                var sql = "SELECT id FROM utente WHERE email = @email";
+                var id = connection.Query<int>(sql, new { email }).FirstOrDefault();
+                return id > 0;
+            }
+        }
+        #endregion
+
+
     }
 }
