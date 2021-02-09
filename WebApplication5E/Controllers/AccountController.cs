@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication5E.Helpers;
 using WebApplication5E.Models.View;
 
 namespace WebApplication5E.Controllers
@@ -32,7 +33,7 @@ namespace WebApplication5E.Controllers
         [HttpPost]
         public ActionResult SignUp(SignUpViewModel model)
         {
-            model.Utente.Password = model.Password;
+            
             SetSignUpViewModelLabels(model);
             if (ModelState.IsValid)
             {
@@ -42,12 +43,32 @@ namespace WebApplication5E.Controllers
                     model.IsOk = false;
                     return View(model);
                 }
-                //TODO controllare su db che non esista una riga con questa mail
-                //TODO salvare su db e altri controlli su proprietà che non hanno data annotation
+                //controllare su db che non esista una riga con questa mail
+                if (DatabaseHelper.ExistsUtenteByEmail(model.Utente.Email))
+                {
+                    model.Messaggio = "Questa email è già presente nel database. Recupera password o cambia email";
+                    model.IsOk = false;
+                    return View(model);
+                }
+                // salvare su db e altri controlli su proprietà che non hanno data annotation
+                var id = DatabaseHelper.InsertUtente(model.Utente);
+                if (id>0)
+                {
+                //TODO inviare mail all'account
+
+                }
             }
             else
             {
                 model.Messaggio = "Completa correttamente tutti i campi";
+                //aggiungo errori specifici prendendoli da ModelState
+                foreach (var value in ModelState.Values)
+                {
+                    foreach (var error in value.Errors)
+                    {
+                        model.Messaggio += "<br>" + error.ErrorMessage;
+                    }                    
+                }                
                 model.IsOk = false;
             }
 

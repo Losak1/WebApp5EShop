@@ -10,6 +10,7 @@ namespace WebApplication5E.Models.Entity
     {
 
         [Required]
+        [MaxLength(255)]
         public string Nome { get; set; }
         [Required]
         public string Password { get; set; }

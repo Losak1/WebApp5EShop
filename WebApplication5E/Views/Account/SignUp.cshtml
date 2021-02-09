@@ -17,6 +17,7 @@
     <div class="form-group">
         <label>@Model.LabelPassword</label>
         @Html.PasswordFor(t => t.Utente.Password, new { placeholder = Model.LabelPassword })
+        @*@Html.HiddenFor(t=>t.Utente.Password)*@
     </div>
     <br />
     <div class="form-group">
@@ -26,7 +27,7 @@
     <br />
     <div class="form-group">
         <label for="Nome">@Model.LabelNome</label>
-        @Html.TextBoxFor(t => t.Utente.Nome, new { placeholder = Model.LabelNome })
+        @Html.TextBoxFor(t => t.Utente.Nome, new { placeholder = Model.LabelNome, maxlength=255 })
     </div>
     <br />
     <div class="form-check">
@@ -37,6 +38,6 @@
     <input type="submit" value="@Model.BtnRegistrazione" />
     if (!string.IsNullOrWhiteSpace(Model.Messaggio))
     {
-        <span class="alert alert-@(Model.IsOk?"success":"danger")">@Model.Messaggio</span>
+        <span class="alert alert-@(Model.IsOk?"success":"danger")">@Html.Raw(Model.Messaggio)</span>
     }
 }

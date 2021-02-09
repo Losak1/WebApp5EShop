@@ -53,6 +53,24 @@ namespace WebApplication5E.Helpers
                 return id > 0;
             }
         }
+
+        public static int InsertUtente(Utente utente)
+        {
+            var id = 0;
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var sql = "INSERT INTO utente (nome, email, password, isprivacy) VALUES (@nome,@email,@password,1); SELECT LAST_INSERT_ID()";
+                    id = connection.Query<int>(sql, utente).First();
+                }
+            }
+            catch(Exception ex)
+            {
+                //TODO qui bisognerebbe loggare l'errore ex.Message
+            }
+            return id;
+        }
         #endregion
 
 
