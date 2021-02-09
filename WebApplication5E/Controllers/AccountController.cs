@@ -33,7 +33,8 @@ namespace WebApplication5E.Controllers
         [HttpPost]
         public ActionResult SignUp(SignUpViewModel model)
         {
-            
+            ModelState.Remove("Utente.password");
+            model.Utente.Password = model.Password;
             SetSignUpViewModelLabels(model);
             if (ModelState.IsValid)
             {

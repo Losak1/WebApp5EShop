@@ -23,9 +23,9 @@ namespace WebApplication5E.Models.View
 
 
         public Utente Utente { get; set; }
-        //[Required]
-        //public string Password { get; set; }
-        //[Compare("Password")]
+        [Required]
+        public string Password { get; set; }
+        [Compare(nameof(Password), ErrorMessage = "Le password non coincidono")]
         public string ConfermaPassword { get; set; }
 
     }

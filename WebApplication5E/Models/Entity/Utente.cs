@@ -17,6 +17,8 @@ namespace WebApplication5E.Models.Entity
         [Required]
         [EmailAddress] //usiamo la mail anche come username
         public string Email { get; set; }
+
+        [Range( typeof(bool), "true", "true", ErrorMessage ="Bisogna accettare la privacy")]
         public bool IsPrivacy { get; set; }
     }
 }
