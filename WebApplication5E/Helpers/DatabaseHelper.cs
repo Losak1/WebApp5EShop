@@ -61,7 +61,9 @@ namespace WebApplication5E.Helpers
             {
                 using (var connection = new MySqlConnection(_connectionString))
                 {
-                    var sql = "INSERT INTO utente (nome, email, password, isprivacy) VALUES (@nome,@email,@password,1); SELECT LAST_INSERT_ID()";
+                    var sql = "INSERT INTO utente (nome, email, password, isprivacy) " +
+                        "VALUES (@nome,@email,@password,1); " +
+                        "SELECT LAST_INSERT_ID()";
                     id = connection.Query<int>(sql, utente).First();
                 }
             }

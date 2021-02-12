@@ -33,17 +33,18 @@ namespace WebApplication5E.Controllers
         [HttpPost]
         public ActionResult SignUp(SignUpViewModel model)
         {
-            ModelState.Remove("Utente.password");
-            model.Utente.Password = model.Password;
+            ModelState.Remove("Utente.password"); //permette di rimuovere la validazione di una proprietà            
             SetSignUpViewModelLabels(model);
             if (ModelState.IsValid)
             {
-                if (!model.Utente.IsPrivacy)
-                {
-                    model.Messaggio = "E' necessario accettare la privacy";
-                    model.IsOk = false;
-                    return View(model);
-                }
+                //lo commento perchè ho messo la dataannotation nella proprietà del modello
+                //if (!model.Utente.IsPrivacy)
+                //{
+                //    model.Messaggio = "E' necessario accettare la privacy";
+                //    model.IsOk = false;
+                //    return View(model);
+                //}
+
                 //controllare su db che non esista una riga con questa mail
                 if (DatabaseHelper.ExistsUtenteByEmail(model.Utente.Email))
                 {
@@ -51,6 +52,7 @@ namespace WebApplication5E.Controllers
                     model.IsOk = false;
                     return View(model);
                 }
+                model.Utente.Password = model.Password; //TODO cifro la password
                 // salvare su db e altri controlli su proprietà che non hanno data annotation
                 var id = DatabaseHelper.InsertUtente(model.Utente);
                 if (id>0)

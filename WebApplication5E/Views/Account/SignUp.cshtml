@@ -9,6 +9,7 @@
 @using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+
     <div class="form-group">
         <label>@Model.LabelEmail</label>
         @Html.TextBoxFor(t => t.Utente.Email, new { @class = "mia", placeholder = Model.LabelEmail, type = "email" })
@@ -27,7 +28,7 @@
     <br />
     <div class="form-group">
         <label for="Nome">@Model.LabelNome</label>
-        @Html.TextBoxFor(t => t.Utente.Nome, new { placeholder = Model.LabelNome, maxlength=255 })
+        @Html.TextBoxFor(t => t.Utente.Nome, new { placeholder = Model.LabelNome, maxlength = 255 })
     </div>
     <br />
     <div class="form-check">
