@@ -9,31 +9,35 @@
 @using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-
+    @Html.ValidationSummary(true)
     <div class="form-group">
-        <label>@Model.LabelEmail</label>
+        <label class="form-check-label">@Model.LabelEmail</label>
         @Html.TextBoxFor(t => t.Utente.Email, new { @class = "mia", placeholder = Model.LabelEmail, type = "email" })
+        @Html.ValidationMessageFor(t => t.Utente.Email)
     </div>
     <br />
     <div class="form-group">
-        <label>@Model.LabelPassword</label>
+        <label class="form-check-label">@Model.LabelPassword</label>
         @Html.PasswordFor(t => t.Password, new { placeholder = Model.LabelPassword })
         @*@Html.HiddenFor(t=>t.Utente.Password)*@
+        @Html.ValidationMessageFor(t => t.Password)
     </div>
     <br />
     <div class="form-group">
-        <label>@Model.LabelConfermaPassword</label>
+        <label class="form-check-label">@Model.LabelConfermaPassword</label>
         @Html.PasswordFor(t => t.ConfermaPassword, new { placeholder = Model.LabelConfermaPassword })
+        @Html.ValidationMessageFor(t => t.ConfermaPassword)
     </div>
     <br />
     <div class="form-group">
-        <label for="Nome">@Model.LabelNome</label>
+        <label for="Nome" class="form-check-label">@Model.LabelNome</label>
         @Html.TextBoxFor(t => t.Utente.Nome, new { placeholder = Model.LabelNome, maxlength = 255 })
+        @Html.ValidationMessageFor(t => t.Utente.Nome)
     </div>
     <br />
     <div class="form-check">
         @Html.CheckBoxFor(t => t.Utente.IsPrivacy, new { @class = "form-check-input" })
-        @Html.LabelFor(t => t.LabelPrivacy, new { @class = "form-check-label", @for = "@Model.Utente.IsPrivacy" })
+        <label for="utente_isprivacy" class="form-check-label">@Html.Raw(Model.LabelPrivacy)</label>
 
     </div>
     <input type="submit" value="@Model.BtnRegistrazione" />
@@ -41,4 +45,6 @@
     {
         <span class="alert alert-@(Model.IsOk?"success":"danger")">@Html.Raw(Model.Messaggio)</span>
     }
+
+    @Html.ValidationMessageFor(t => t.Utente.IsPrivacy)
 }

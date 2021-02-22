@@ -52,12 +52,18 @@ namespace WebApplication5E.Controllers
                     model.IsOk = false;
                     return View(model);
                 }
-                model.Utente.Password = model.Password; //TODO cifro la password
                 // salvare su db e altri controlli su proprietà che non hanno data annotation
+                model.Utente.Password = string.Empty;
                 var id = DatabaseHelper.InsertUtente(model.Utente);
-                if (id>0)
+                if (id > 0)
                 {
-                //TODO inviare mail all'account
+                    model.Utente.Password = CryptoHelper.HashSHA256(id + model.Password); // cifro la password
+                    // update password cifrata
+                    bool result = DatabaseHelper.UpdatePassword(id, model.Utente.Password);
+                    if (result)
+                    {
+                        //TODO inviare mail all'account
+                    }
 
                 }
             }
@@ -69,13 +75,13 @@ namespace WebApplication5E.Controllers
                 {
                     foreach (var error in value.Errors)
                     {
-                        model.Messaggio += "<br>" + error.ErrorMessage;
-                    }                    
-                }                
+                        model.Messaggio += $"{error.ErrorMessage} ";
+                    }
+                }
                 model.IsOk = false;
             }
 
-     
+
             return View(model);
         }
     }

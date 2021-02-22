@@ -48,7 +48,7 @@ namespace WebApplication5E.Helpers
         {
             using (var connection = new MySqlConnection(_connectionString))
             {
-                var sql = "SELECT id FROM utente WHERE email = @email";
+                var sql = "SELECT id FROM utente WHERE email = @email and password <>''";
                 var id = connection.Query<int>(sql, new { email }).FirstOrDefault();
                 return id > 0;
             }
@@ -72,6 +72,24 @@ namespace WebApplication5E.Helpers
                 //TODO qui bisognerebbe loggare l'errore ex.Message
             }
             return id;
+        }
+
+        public static bool UpdatePassword(int id, string password)
+        {
+            try
+            {
+                using(var connection = new MySqlConnection(_connectionString))
+                {
+                    var sql = "UPDATE utente SET password = @password WHERE id = @id";
+                    connection.Query(sql, new { id, password });
+                }
+            }
+            catch(Exception ex)
+            {
+                //TODO qui bisognerebbe loggare l'errore ex.Message
+                return false;
+            }
+            return true;
         }
         #endregion
 
