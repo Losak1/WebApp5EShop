@@ -64,7 +64,6 @@ namespace WebApplication5E.Controllers
                     {
                         //TODO inviare mail all'account
                     }
-
                 }
             }
             else

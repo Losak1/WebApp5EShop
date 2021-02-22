@@ -38,7 +38,7 @@
     <div class="form-check">
         @Html.CheckBoxFor(t => t.Utente.IsPrivacy, new { @class = "form-check-input" })
         <label for="utente_isprivacy" class="form-check-label">@Html.Raw(Model.LabelPrivacy)</label>
-
+        @Html.ValidationMessageFor(t => t.Utente.IsPrivacy)
     </div>
     <input type="submit" value="@Model.BtnRegistrazione" />
     if (!string.IsNullOrWhiteSpace(Model.Messaggio))
@@ -46,5 +46,5 @@
         <span class="alert alert-@(Model.IsOk?"success":"danger")">@Html.Raw(Model.Messaggio)</span>
     }
 
-    @Html.ValidationMessageFor(t => t.Utente.IsPrivacy)
+
 }
