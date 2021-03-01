@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication5E.Helpers;
+using WebApplication5E.Models.Entity;
 using WebApplication5E.Models.View;
 
 namespace WebApplication5E.Controllers
@@ -83,5 +84,55 @@ namespace WebApplication5E.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            var model = new LoginViewModel();
+            SetLoginViewModelLabels(model);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginViewModel model)
+        {
+            SetLoginViewModelLabels(model);
+            if (!ModelState.IsValid)
+                return View(model);
+            //TODO
+            //1)recuperare l'utente da database tramite email
+            //exit su 1)quando non troviamo utente con quella email restituiamo errore email e password non coincidono
+            var utente = DatabaseHelper.GetUtenteByEmail(model.Email);
+            //2)cifrare la password invia con il loginviewmodel
+            //3)confrontare la password cifrata con quella dell'utente recuperato da db
+            if (utente==null || CryptoHelper.HashSHA256(utente.Id + model.Password)!=utente.Password)
+            {
+                model.MessaggioErrore = "Email e password non coincidono";
+                return View(model);
+            }
+            //var passwordCifrata = CryptoHelper.HashSHA256(utente.Id + model.Password);
+            //if (passwordCifrata != utente.Password)
+            //{
+            //    model.MessaggioErrore = "Email e password non coincidono";
+            //    return View(model);
+            //}
+
+            //4) vado all'area riservata, ma prima devo mettere in sessione l'utente
+            Session["UtenteLoggato"] = utente;
+            //Session["prodotto"] = new Prodotto();
+            //Session["numeroEstratto"] = 7;
+            //Session["nome"] = "Salvo";
+            return RedirectToAction("Index","AreaRiservata");
+        }
+
+
+        private void SetLoginViewModelLabels(LoginViewModel model)
+        {
+            ViewBag.Title = model.LabelTitoloLogin = "Login";
+            model.LabelEmail = "Indirizzo mail";
+            model.LabelPassword = "Password";
+            model.LabelButtonInvia = "Entra";
+        }
+
     }
 }

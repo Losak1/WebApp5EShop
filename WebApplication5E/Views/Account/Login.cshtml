@@ -1,0 +1,56 @@
+﻿@model WebApplication5E.Models.View.LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutBasePage.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>
+            @Model.LabelTitoloLogin
+        </h1>
+    </div>
+</div>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <div class="form-group">
+                        <label for="Username">@Model.LabelEmail</label>
+                        @Html.TextBoxFor(t => t.Email, new { @class = "form-control fadeIn second", placeholder = Model.LabelEmail })
+                    <span style="color:orange">@Html.ValidationMessageFor(t => t.Email)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <div class="form-group">
+                        <label for="Password">@Model.LabelPassword</label>
+                        @Html.PasswordFor(t => t.Password, new { @class = "form-control fadeIn third", placeholder = Model.LabelPassword })
+                    <span style="color:orange">@Html.ValidationMessageFor(t => t.Password)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <input type="submit" value="@Model.LabelButtonInvia" class="btn btn-primary" />
+                </div>
+            </div>
+            if (!string.IsNullOrWhiteSpace(Model.MessaggioErrore))
+            {
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <span class="alert alert-danger">@Html.Raw(Model.MessaggioErrore) </span>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

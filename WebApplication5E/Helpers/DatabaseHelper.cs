@@ -91,6 +91,15 @@ namespace WebApplication5E.Helpers
             }
             return true;
         }
+
+        public static Utente GetUtenteByEmail(string email)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                var sql = "SELECT * FROM utente WHERE email = @email and password <>''";
+                return connection.Query<Utente>(sql, new { email }).FirstOrDefault();
+            }
+        }
         #endregion
 
 
