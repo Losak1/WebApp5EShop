@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contents\Images\logo_finix.jpg" />
+    <Content Include="Database\shop.sql" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
