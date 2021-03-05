@@ -69,13 +69,13 @@ namespace WebApplication5E.Controllers
             }
             else
             {
-                model.Messaggio = "Completa correttamente tutti i campi";
+                model.Messaggio = "Completa correttamente tutti i campi<br>";
                 //aggiungo errori specifici prendendoli da ModelState
                 foreach (var value in ModelState.Values)
                 {
                     foreach (var error in value.Errors)
                     {
-                        model.Messaggio += $"{error.ErrorMessage} ";
+                        model.Messaggio += $"{error.ErrorMessage} <br>";
                     }
                 }
                 model.IsOk = false;
@@ -119,10 +119,10 @@ namespace WebApplication5E.Controllers
 
             //4) vado all'area riservata, ma prima devo mettere in sessione l'utente
             Session["UtenteLoggato"] = utente;
-            //Session["prodotto"] = new Prodotto();
+            //Session["prodotto"] = new Prodotto(); in sessione posso mettere anche oggetti e varibili di tipo diverso
             //Session["numeroEstratto"] = 7;
             //Session["nome"] = "Salvo";
-            return RedirectToAction("Index","AreaRiservata");
+            return RedirectToAction("Index","AreaRiservata"/*, new { idutente = utente.Id , pag = 10}*/);
         }
 
 

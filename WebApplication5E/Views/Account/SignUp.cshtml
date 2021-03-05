@@ -10,40 +10,64 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <div class="form-group">
-        <label class="form-check-label">@Model.LabelEmail</label>
-        @Html.TextBoxFor(t => t.Utente.Email, new { @class = "mia", placeholder = Model.LabelEmail, type = "email" })
-        @Html.ValidationMessageFor(t => t.Utente.Email)
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="form-group">
+                <label for="Email">@Model.LabelEmail</label>
+                @Html.TextBoxFor(t => t.Utente.Email, new { @class = "form-control fadeIn second", placeholder = Model.LabelEmail, type = "email" })
+                <span style="color:orange">@Html.ValidationMessageFor(t => t.Utente.Email)</span>
+            </div>
+        </div>
     </div>
-    <br />
-    <div class="form-group">
-        <label class="form-check-label">@Model.LabelPassword</label>
-        @Html.PasswordFor(t => t.Password, new { placeholder = Model.LabelPassword })
-        @*@Html.HiddenFor(t=>t.Utente.Password)*@
-        @Html.ValidationMessageFor(t => t.Password)
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="form-group">
+                <label class="form-check-label">@Model.LabelPassword</label>
+                @Html.PasswordFor(t => t.Password, new { @class = "form-control fadeIn second", placeholder = Model.LabelPassword })
+                @*@Html.HiddenFor(t=>t.Utente.Password)*@
+                <span style="color:orange">@Html.ValidationMessageFor(t => t.Password)</span>
+            </div>
+        </div>
     </div>
-    <br />
-    <div class="form-group">
-        <label class="form-check-label">@Model.LabelConfermaPassword</label>
-        @Html.PasswordFor(t => t.ConfermaPassword, new { placeholder = Model.LabelConfermaPassword })
-        @Html.ValidationMessageFor(t => t.ConfermaPassword)
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="form-group">
+                <label class="form-check-label">@Model.LabelConfermaPassword</label>
+                @Html.PasswordFor(t => t.ConfermaPassword, new { @class = "form-control fadeIn second", placeholder = Model.LabelConfermaPassword })
+                <span style="color:orange">@Html.ValidationMessageFor(t => t.ConfermaPassword)</span>
+            </div>
+        </div>
     </div>
-    <br />
-    <div class="form-group">
-        <label for="Nome" class="form-check-label">@Model.LabelNome</label>
-        @Html.TextBoxFor(t => t.Utente.Nome, new { placeholder = Model.LabelNome, maxlength = 255 })
-        @Html.ValidationMessageFor(t => t.Utente.Nome)
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="form-group">
+                <label class="form-check-label">@Model.LabelNome</label>
+                @Html.TextBoxFor(t => t.Utente.Nome, new { @class = "form-control fadeIn second", placeholder = Model.LabelNome, maxlength = 255 })
+                <span style="color:orange">@Html.ValidationMessageFor(t => t.Utente.Nome)</span>
+            </div>
+        </div>
     </div>
-    <br />
-    <div class="form-check">
-        @Html.CheckBoxFor(t => t.Utente.IsPrivacy, new { @class = "form-check-input" })
-        <label for="utente_isprivacy" class="form-check-label">@Html.Raw(Model.LabelPrivacy)</label>
-        @Html.ValidationMessageFor(t => t.Utente.IsPrivacy)
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="form-check">
+                @Html.CheckBoxFor(t => t.Utente.IsPrivacy, new { @class = "form-check-input" })
+                <label for="utente_isprivacy" class="form-check-label">@Html.Raw(Model.LabelPrivacy)</label>
+                @Html.ValidationMessageFor(t => t.Utente.IsPrivacy)
+            </div>
+        </div>
     </div>
-    <input type="submit" value="@Model.BtnRegistrazione" />
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <input type="submit" value="@Model.BtnRegistrazione" class="btn btn-primary"/>
+        </div>
+    </div><br />
     if (!string.IsNullOrWhiteSpace(Model.Messaggio))
     {
-        <span class="alert alert-@(Model.IsOk?"success":"danger")">@Html.Raw(Model.Messaggio)</span>
+        <div class="row clear">
+            <div class="col-md-6">
+                <p class="alert alert-@(Model.IsOk?"success":"danger")">@Html.Raw(Model.Messaggio)</p>
+            </div>
+        </div>
     }
 
 

@@ -1,8 +1,65 @@
-﻿
+﻿@model WebApplication5E.Models.View.ProfiloViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutBasePage.cshtml";
 }
 
-<h2>Homepage area riservata</h2>
 
+<h2>@Model.LabelTitolo</h2>
+
+@using (Html.BeginForm("Index", "AreaRiservata", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="form-group">
+                <label for="Email">@Model.LabelEmail</label>
+                @Html.TextBoxFor(t => t.Utente.Email, new { @class = "form-control fadeIn second", @readonly="true", placeholder = Model.LabelEmail, type = "email" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="form-group">
+                <label class="form-check-label">@Model.LabelPassword</label>
+                @Html.PasswordFor(t => t.Password, new { @class = "form-control fadeIn second", placeholder = Model.LabelPassword })
+                <span style="color:orange">@Html.ValidationMessageFor(t => t.Password)</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="form-group">
+                <label class="form-check-label">@Model.LabelConfermaPassword</label>
+                @Html.PasswordFor(t => t.ConfermaPassword, new { @class = "form-control fadeIn second", placeholder = Model.LabelConfermaPassword })
+                <span style="color:orange">@Html.ValidationMessageFor(t => t.ConfermaPassword)</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="form-group">
+                <label class="form-check-label">@Model.LabelNome</label>
+                @Html.TextBoxFor(t => t.Utente.Nome, new { @class = "form-control fadeIn second", placeholder = Model.LabelNome, maxlength = 255 })
+                <span style="color:orange">@Html.ValidationMessageFor(t => t.Utente.Nome)</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <input type="submit" value="@Model.BtnAggiorna" class="btn btn-primary" />
+        </div>
+    </div>
+    <br />
+    if (!string.IsNullOrWhiteSpace(Model.Messaggio))
+    {
+        <div class="row clear">
+            <div class="col-md-6">
+                <p class="alert alert-@(Model.IsOk?"success":"danger")">@Html.Raw(Model.Messaggio)</p>
+            </div>
+        </div>
+    }
+
+
+}
